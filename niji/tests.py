@@ -52,8 +52,11 @@ class APITest(LiveServerTestCase):
             username='test2', email='2@q.com', password='222'
         )
         self.super_user = User.objects.create_user(
-            username='super', email='super@example.com', password='123', is_superuser=True, is_staff=True
+            username='super', email='super@example.com', password='123'
         )
+        self.super_user.is_superuser = True
+        self.super_user.is_staff = True
+        self.super_user.save()
         # Create 99 topics
         for i in range(1, 100):
             setattr(
@@ -133,8 +136,11 @@ class StickToTopTest(LiveServerTestCase):
             username='test1', email='1@q.com', password='111'
         )
         self.super_user = User.objects.create_user(
-            username='super', email='super@example.com', password='123', is_superuser=True, is_staff=True
+            username='super', email='super@example.com', password='123'
         )
+        self.super_user.is_superuser = True
+        self.super_user.is_staff = True
+        self.super_user.save()
         # Create 99 topics
         for i in range(1, 100):
             setattr(
